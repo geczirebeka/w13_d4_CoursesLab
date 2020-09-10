@@ -33,13 +33,13 @@ class CoursesApplicationTests {
 
 	@Test
 	public void canGetCustomersByTownAndCourseName() {
-		List<Customer> found = customerRepository.findByTownAndCustomerBookingsCourseName("Edinburgh", "UX Intro");
+		List<Customer> found = customerRepository.findByTownIgnoreCaseAndCustomerBookingsCourseNameIgnoreCase("Edinburgh", "UX Intro");
 		assertEquals(2, found.size());
 	}
 
 	@Test
 	public void canGetCustomersByAgeAndTownAndCourseName() {
-		List<Customer> found = customerRepository.findByAgeGreaterThanAndTownAndCustomerBookingsCourseName(26, "Edinburgh", "UX Intro");
+		List<Customer> found = customerRepository.findByAgeGreaterThanAndTownIgnoreCaseAndCustomerBookingsCourseNameIgnoreCase(26, "Edinburgh", "UX Intro");
 		assertEquals(1, found.size());
 		assertEquals("Tomek", found.get(0).getName());
 	}
