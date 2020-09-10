@@ -1,5 +1,7 @@
 package com.codeclan.example.Courses;
 
+import com.codeclan.example.Courses.models.Booking;
+import com.codeclan.example.Courses.models.Course;
 import com.codeclan.example.Courses.models.Customer;
 import com.codeclan.example.Courses.repositories.BookingRepository;
 import com.codeclan.example.Courses.repositories.CourseRepository;
@@ -42,6 +44,30 @@ class CoursesApplicationTests {
 		List<Customer> found = customerRepository.findByAgeGreaterThanAndTownIgnoreCaseAndCustomerBookingsCourseNameIgnoreCase(26, "Edinburgh", "UX Intro");
 		assertEquals(1, found.size());
 		assertEquals("Tomek", found.get(0).getName());
+	}
+
+	@Test
+	public void canGetCustomersByCourseName() {
+		List<Customer> found = customerRepository.findByCustomerBookingsCourseNameIgnoreCase("UX Intro");
+		assertEquals(2, found.size());
+	}
+
+	@Test
+	public void canGetBookingsByDate() {
+		List<Booking> found = bookingRepository.findByDate("15-11-20");
+		assertEquals(2, found.size());
+	}
+
+	@Test
+	public void canGetCoursesByRating() {
+		List<Course> found = courseRepository.findByRating(4);
+		assertEquals(2, found.size());
+	}
+
+	@Test
+	public void canGetCoursesByCustomerName() {
+		List<Course> found = courseRepository.findByCourseBookingsCustomerNameIgnoreCase("Tomek");
+		assertEquals(4, found.size());
 	}
 
 
