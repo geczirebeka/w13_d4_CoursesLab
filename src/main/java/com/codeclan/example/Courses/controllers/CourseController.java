@@ -5,10 +5,7 @@ import com.codeclan.example.Courses.repositories.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,5 +34,23 @@ public class CourseController {
     @GetMapping(value= "/courses/{id}")
     public ResponseEntity<Optional<Course>> getCourse(@PathVariable Long id) {
         return new ResponseEntity<>(courseRepository.findById(id), HttpStatus.OK);
+    }
+
+    @PostMapping(value= "/courses")
+    public ResponseEntity<Course> createCourse(@RequestBody Course course) {
+        courseRepository.save(course);
+        return new ResponseEntity<>(course, HttpStatus.CREATED);
+    }
+
+    @PutMapping(value= "/courses/{id}")
+    public ResponseEntity<Course> updateCourse(@RequestBody Course course, @PathVariable Long id) {
+        courseRepository.save(course);
+        return new ResponseEntity<>(course, HttpStatus.OK);
+    }
+
+    @DeleteMapping(value= "/courses/{id}")
+    public ResponseEntity<List<Course>> deleteCourse(@PathVariable Long id) {
+        courseRepository.deleteById(id);
+        return new ResponseEntity<>(courseRepository.findAll(), HttpStatus.OK);
     }
 }
