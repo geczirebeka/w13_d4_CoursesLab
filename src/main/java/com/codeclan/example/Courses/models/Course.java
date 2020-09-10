@@ -76,8 +76,4 @@ public class Course {
     public void setCourseBookings(List<Booking> courseBookings) {
         this.courseBookings = courseBookings;
     }
-
-    public void addBooking(Booking booking) {
-        courseBookings.add(booking);
-    }
 }

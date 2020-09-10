@@ -76,8 +76,4 @@ public class Customer {
     public void setCustomerBookings(List<Booking> customerBookings) {
         this.customerBookings = customerBookings;
     }
-
-    public void addBooking(Booking booking) {
-        this.customerBookings.add(booking);
-    }
 }
